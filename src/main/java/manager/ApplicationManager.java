@@ -14,6 +14,7 @@ public class ApplicationManager {
     public WebDriver getDriver(){
         return driver;
     }
+
     @BeforeMethod
     public void setup(){
         chromeOptions = new ChromeOptions().addArguments("--lang=en");
