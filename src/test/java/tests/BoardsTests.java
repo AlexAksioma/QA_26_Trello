@@ -10,6 +10,7 @@ import pages.BoardsPage;
 import pages.HomePage;
 import pages.PersonalBoardPage;
 
+import java.lang.reflect.Method;
 import java.util.Random;
 
 public class BoardsTests extends ApplicationManager {
@@ -28,11 +29,12 @@ public class BoardsTests extends ApplicationManager {
     }
 
     @Test
-    public void createBoardPositive() {
+    public void createBoardPositive(Method method) {
         int i = new Random().nextInt(1000);
         BoardDTO board = BoardDTO.builder()
                 .boardTitle("QA26-" + i)
                 .build();
+        logger.info(method.getName()+ "starts with board title --> "+ board.getBoardTitle());
         //HomePage homePage = new HomePage(getDriver());
         Assert.assertTrue(
                 //homePage.clickBtnLogin()
