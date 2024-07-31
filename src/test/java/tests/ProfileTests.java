@@ -2,6 +2,8 @@ package tests;
 
 import dto.UserDTO;
 import manager.ApplicationManager;
+import manager.RetryAnalyzer;
+import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import pages.BoardsPage;
@@ -24,8 +26,16 @@ public class ProfileTests extends ApplicationManager {
                 .goToProfileAndVisibility();
     }
 
-    @Test
+    @Test(retryAnalyzer = RetryAnalyzer.class)
     public void changeProfilePhotoPositiveTest(){
-            profileAndVisibility.changeAvatar("qa_blue.jpg");
+            Assert.assertTrue(profileAndVisibility
+                    .changeAvatar("qa_blue.jpg")
+                    .isTextInElementPresent_AvatarAdded());
+    }
+    @Test
+    public void changeProfilePhotoNegativeTest_wrongFileFormat(){
+            Assert.assertTrue(profileAndVisibility
+                    .changeAvatar("log-20240731T190803.log")
+                    .isTextInElementPresent_WrongFileFormat());
     }
 }

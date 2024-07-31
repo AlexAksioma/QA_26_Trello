@@ -27,6 +27,10 @@ public class ProfileAndVisibility extends BasePage implements Path {
     WebElement inputUploadPhoto;
     @FindBy(xpath = "//button[@type='submit']")
     WebElement btnUpload;
+    @FindBy(xpath = "//div[@class='css-1748k3u']")
+    WebElement popUpMessageAvatarAdded;
+    @FindBy(xpath = "//span[@class='css-d8rbi4']")
+    WebElement messageWrongFileFormat;
 
     public ProfileAndVisibility changeAvatar(String fileName) {
         List<String> tabs = new ArrayList<>(driver.getWindowHandles());
@@ -35,12 +39,20 @@ public class ProfileAndVisibility extends BasePage implements Path {
         Actions actions = new Actions(driver);
         actions.moveToElement(profilePhoto).pause(2000).click().perform();
         changeProfilePhoto.click();
-        pause(3);
+        //pause(3);
         File file = new File(PHOTOS_PATH+fileName);
         String filePath = file.getAbsolutePath();
         inputUploadPhoto.sendKeys(filePath);
-        pause(3);
-        btnUpload.click();
+//        pause(3);
+//        btnUpload.click();
+        clickWait(btnUpload, 3);
         return this;
+    }
+    public boolean isTextInElementPresent_AvatarAdded(){
+        return isTextInElementPresent(popUpMessageAvatarAdded, "We've uploaded your new avatar. " +
+                "It may take a few minutes to display everywhere.", 7);
+    }
+    public boolean isTextInElementPresent_WrongFileFormat(){
+        return isTextInElementPresent(messageWrongFileFormat, "Upload a photo or select", 3);
     }
 }
