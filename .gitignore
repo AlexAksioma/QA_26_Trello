@@ -14,6 +14,8 @@ target/
 src/main/resources/test_logs
 src/main/resources/screenshots
 src/main/resources/photos
+src/main/resources/files_csv
+src/main/resources/properties
 
 ### Eclipse ###
 .apt_generated

@@ -1,5 +1,6 @@
 package tests;
 
+import dataproviders.DataProviderBoards;
 import dto.BoardDTO;
 import dto.UserDTO;
 import manager.ApplicationManager;
@@ -65,12 +66,12 @@ public class BoardsTests extends ApplicationManager {
         ;
     }
 
-    @Test
-    public void deleteBoardPositiveTest() {
-        int i = new Random().nextInt(1000);
-        BoardDTO board = BoardDTO.builder()
-                .boardTitle("QA26-" + i)
-                .build();
+    @Test(dataProvider = "DPFile_deleteBoardPositiveTest", dataProviderClass = DataProviderBoards.class)
+    public void deleteBoardPositiveTest(BoardDTO board) {
+//        int i = new Random().nextInt(1000);
+//        BoardDTO board = BoardDTO.builder()
+//                .boardTitle("QA26-" + i)
+//                .build();
         PersonalBoardPage personalBoardPage = boardsPage
                 .typeBoardTitle(board)
                 .clickBtnCreateSubmitPositive();

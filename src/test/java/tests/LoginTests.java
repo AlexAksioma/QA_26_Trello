@@ -7,11 +7,13 @@ import org.openqa.selenium.TakesScreenshot;
 import org.testng.annotations.Test;
 import pages.HomePage;
 
+import static manager.PropertiesReader.getProperty;
+
 public class LoginTests extends ApplicationManager {
 
     UserDTO user = UserDTO.builder()
-            .email("aksiomamedved@gmail.com")
-            .password("AlexMed123!")
+            .email(getProperty("login.properties", "email"))
+            .password(getProperty("login.properties", "password"))
             .build();
 
     @Test
