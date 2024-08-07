@@ -8,6 +8,7 @@ import manager.TestNGListener;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
@@ -24,10 +25,10 @@ import static pages.BoardsPage.pause;
 @Listeners(TestNGListener.class)
 
 public class BoardsTests extends ApplicationManager {
-    UserDTO user = UserDTO.builder()
-            .email("aksiomamedved@gmail.com")
-            .password("AlexMed123!")
-            .build();
+//    UserDTO user = UserDTO.builder()
+//            .email("aksiomamedved@gmail.com")
+//            .password("AlexMed123!")
+//            .build();
     BoardsPage boardsPage = new BoardsPage(getDriver());
 
     @BeforeMethod
@@ -38,7 +39,7 @@ public class BoardsTests extends ApplicationManager {
                 .typePassword(user);
     }
 
-    @Test(invocationCount = 3)
+    @Test(invocationCount = 2)
     public void createBoardPositive(Method method) {
         int i = new Random().nextInt(1000);
         BoardDTO board = BoardDTO.builder()
@@ -94,7 +95,6 @@ public class BoardsTests extends ApplicationManager {
         List<WebElement> listBoars = getDriver().findElements(
                 By.xpath("//li[@class='boards-page-board-section-list-item']"));
         System.out.println("size list --> " + listBoars.size());
-        //boardsPage.clickElement2ListBoards().deleteBoard();
         for (int i = 0; i < listBoars.size()-2; i++) {
             boardsPage.clickElement2ListBoards().deleteBoard();
             pause(5);

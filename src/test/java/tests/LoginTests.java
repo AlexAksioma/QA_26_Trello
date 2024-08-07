@@ -11,10 +11,10 @@ import static manager.PropertiesReader.getProperty;
 
 public class LoginTests extends ApplicationManager {
 
-    UserDTO user = UserDTO.builder()
-            .email(getProperty("login.properties", "email"))
-            .password(getProperty("login.properties", "password"))
-            .build();
+//    UserDTO user = UserDTO.builder()
+//            .email(getProperty("login.properties", "email"))
+//            .password(getProperty("login.properties", "password"))
+//            .build();
 
     @Test
     public void loginTest(){
