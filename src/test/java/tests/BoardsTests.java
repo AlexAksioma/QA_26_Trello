@@ -5,6 +5,8 @@ import dto.BoardDTO;
 import dto.UserDTO;
 import manager.ApplicationManager;
 import manager.TestNGListener;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Listeners;
@@ -14,7 +16,10 @@ import pages.HomePage;
 import pages.PersonalBoardPage;
 
 import java.lang.reflect.Method;
+import java.util.List;
 import java.util.Random;
+
+import static pages.BoardsPage.pause;
 
 @Listeners(TestNGListener.class)
 
@@ -33,13 +38,13 @@ public class BoardsTests extends ApplicationManager {
                 .typePassword(user);
     }
 
-    @Test
+    @Test(invocationCount = 3)
     public void createBoardPositive(Method method) {
         int i = new Random().nextInt(1000);
         BoardDTO board = BoardDTO.builder()
                 .boardTitle("QA26-" + i)
                 .build();
-        logger.info(method.getName()+ "starts with board title --> "+ board.getBoardTitle());
+        logger.info(method.getName() + "starts with board title --> " + board.getBoardTitle());
         //HomePage homePage = new HomePage(getDriver());
         Assert.assertTrue(
                 //homePage.clickBtnLogin()
@@ -81,5 +86,19 @@ public class BoardsTests extends ApplicationManager {
         } else {
             Assert.fail("board isn't create");
         }
+    }
+
+    @Test
+    public void deleteAllBoard() {
+        pause(3);
+        List<WebElement> listBoars = getDriver().findElements(
+                By.xpath("//li[@class='boards-page-board-section-list-item']"));
+        System.out.println("size list --> " + listBoars.size());
+        //boardsPage.clickElement2ListBoards().deleteBoard();
+        for (int i = 0; i < listBoars.size()-2; i++) {
+            boardsPage.clickElement2ListBoards().deleteBoard();
+            pause(5);
+        }
+
     }
 }

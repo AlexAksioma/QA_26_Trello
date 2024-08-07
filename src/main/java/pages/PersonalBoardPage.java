@@ -38,4 +38,12 @@ public class PersonalBoardPage extends BasePage{
         btnDeleteBoardConfirm.click();
         return new BoardsPage(driver);
     }
+    public BoardsPage deleteBoard() {
+        btnDots.click();
+        btnCloseBoard.click();
+        btnCloseConfirm.click();
+        btnDeleteBoard.click();
+        btnDeleteBoardConfirm.click();
+        return new BoardsPage(driver);
+    }
 }

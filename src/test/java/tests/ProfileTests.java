@@ -32,7 +32,7 @@ public class ProfileTests extends ApplicationManager {
                     .changeAvatar("qa_blue.jpg")
                     .isTextInElementPresent_AvatarAdded());
     }
-    @Test
+    @Test(invocationCount = 2)
     public void changeProfilePhotoNegativeTest_wrongFileFormat(){
             Assert.assertTrue(profileAndVisibility
                     .changeAvatar("log-20240731T190803.log")
