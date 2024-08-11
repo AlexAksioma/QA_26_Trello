@@ -19,7 +19,7 @@ public class BoardsPage extends BasePage{
         PageFactory.initElements(
                 new AjaxElementLocatorFactory(driver, 10), this);
     }
-    List<WebElement> listBoars;
+    //List<WebElement> listBoars;
     @FindBy(xpath = "//li[@data-testid='create-board-tile']")
     WebElement btnCreateBoard;
     @FindBy(xpath = "//input[@data-testid='create-board-title-input']")
@@ -32,6 +32,8 @@ public class BoardsPage extends BasePage{
     WebElement btnHeaderProfile;
     @FindBy(xpath = "//a[@data-testid='manage-account-link']")
     WebElement btnManageAccount;
+    @FindBy(xpath = "//a[@data-testid='account-menu-activity']")
+    WebElement btnActivity;
 
     public BoardsPage typeBoardTitle(BoardDTO board){
         btnCreateBoard.click();
@@ -66,5 +68,11 @@ public class BoardsPage extends BasePage{
         driver.findElement(
                 By.xpath("//ul[@class='boards-page-board-section-list']/li[2]")).click();
         return  new PersonalBoardPage(driver);
+    }
+
+    public ActivityPage goToPageActivity(){
+        btnHeaderProfile.click();
+        btnActivity.click();
+        return new ActivityPage(driver);
     }
 }

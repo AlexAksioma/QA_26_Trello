@@ -16,6 +16,7 @@ src/main/resources/screenshots
 src/main/resources/photos
 src/main/resources/files_csv
 src/main/resources/properties
+src/main/resources/serialize
 
 ### Eclipse ###
 .apt_generated

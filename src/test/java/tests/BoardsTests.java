@@ -88,6 +88,26 @@ public class BoardsTests extends ApplicationManager {
             Assert.fail("board isn't create");
         }
     }
+    @Test()
+    public void deleteBoardPositiveTest_validatePageActivity() {
+        int i = new Random().nextInt(1000);
+        BoardDTO board = BoardDTO.builder()
+                .boardTitle("QA26-" + i)
+                .build();
+        PersonalBoardPage personalBoardPage = boardsPage
+                .typeBoardTitle(board)
+                .clickBtnCreateSubmitPositive()
+                ;
+
+
+
+//        if (personalBoardPage.isTextInElementPresent_nameBoard(board.getBoardTitle())) {
+//            Assert.assertTrue(personalBoardPage.deleteBoard(board)
+//                    .isTextPopUpPresent());
+//        } else {
+//            Assert.fail("board isn't create");
+//        }
+    }
 
     @Test
     public void deleteAllBoard() {
