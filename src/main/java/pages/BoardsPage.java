@@ -42,7 +42,8 @@ public class BoardsPage extends BasePage{
     }
 
     public PersonalBoardPage clickBtnCreateSubmitPositive(){
-        btnCreateSubmit.click();
+        //btnCreateSubmit.click();
+        clickWait(btnCreateSubmit,5);
         return new PersonalBoardPage(driver);
     }
     public BoardsPage clickBtnCreateSubmitNegative(){
@@ -55,6 +56,7 @@ public class BoardsPage extends BasePage{
     public boolean isTextPopUpPresent(){
         return isTextInElementPresent(popUpBoardDeleted, "Board deleted.", 3);
     }
+
 
     public ProfileAndVisibility goToProfileAndVisibility() {
         btnHeaderProfile.click();

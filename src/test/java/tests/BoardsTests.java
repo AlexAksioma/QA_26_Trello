@@ -94,9 +94,12 @@ public class BoardsTests extends ApplicationManager {
         BoardDTO board = BoardDTO.builder()
                 .boardTitle("QA26-" + i)
                 .build();
-        PersonalBoardPage personalBoardPage = boardsPage
+        Assert.assertTrue(boardsPage
                 .typeBoardTitle(board)
                 .clickBtnCreateSubmitPositive()
+                .deleteBoard(board)
+                .goToPageActivity()
+                .isTextFirstElementActivitiesPresent())
                 ;
 
 
